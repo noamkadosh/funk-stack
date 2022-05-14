@@ -7,7 +7,7 @@ const sort = require('sort-package-json')
 
 function escapeRegExp(string) {
 	// $& means the whole matched string
-	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+	return string.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&')
 }
 
 function getRandomString(length) {
@@ -28,18 +28,20 @@ async function main({ rootDirectory }) {
 
 	const APP_NAME = (DIR_NAME + '-' + SUFFIX)
 		// get rid of anything that's not allowed in an app name
-		.replace(/[^a-zA-Z0-9-_]/g, '-')
+		.replace(/[^\w-]/g, '-')
 
+	/* eslint-disable security/detect-non-literal-fs-filename */
 	const [prodContent, readme, env, packageJson] = await Promise.all([
-		fs.readFile(FLY_TOML_PATH, 'utf-8'),
-		fs.readFile(README_PATH, 'utf-8'),
-		fs.readFile(EXAMPLE_ENV_PATH, 'utf-8'),
-		fs.readFile(PACKAGE_JSON_PATH, 'utf-8'),
+		fs.readFile(FLY_TOML_PATH, 'utf8'),
+		fs.readFile(README_PATH, 'utf8'),
+		fs.readFile(EXAMPLE_ENV_PATH, 'utf8'),
+		fs.readFile(PACKAGE_JSON_PATH, 'utf8'),
 		fs.rm(path.join(rootDirectory, '.github/ISSUE_TEMPLATE'), {
 			recursive: true
 		}),
 		fs.rm(path.join(rootDirectory, '.github/PULL_REQUEST_TEMPLATE.md'))
 	])
+	/* eslint-enable security/detect-non-literal-fs-filename */
 
 	const newEnv = env.replace(
 		/^SESSION_SECRET=.*$/m,
@@ -50,6 +52,7 @@ async function main({ rootDirectory }) {
 	prodToml.app = prodToml.app.replace(REPLACER, APP_NAME)
 
 	const newReadme = readme.replace(
+		// eslint-disable-next-line security/detect-non-literal-regexp
 		new RegExp(escapeRegExp(REPLACER), 'g'),
 		APP_NAME
 	)
@@ -57,16 +60,18 @@ async function main({ rootDirectory }) {
 	const newPackageJson =
 		JSON.stringify(
 			sort({ ...JSON.parse(packageJson), name: APP_NAME }),
-			null,
+			undefined,
 			2
 		) + '\n'
 
+	/* eslint-disable security/detect-non-literal-fs-filename */
 	await Promise.all([
 		fs.writeFile(FLY_TOML_PATH, toml.stringify(prodToml)),
 		fs.writeFile(README_PATH, newReadme),
 		fs.writeFile(ENV_PATH, newEnv),
 		fs.writeFile(PACKAGE_JSON_PATH, newPackageJson)
 	])
+	/* eslint-enable security/detect-non-literal-fs-filename */
 
 	console.log(
 		`

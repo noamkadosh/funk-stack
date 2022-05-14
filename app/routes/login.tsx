@@ -1,15 +1,16 @@
+import * as React from 'react'
+
 import type {
 	ActionFunction,
 	LoaderFunction,
 	MetaFunction
 } from '@remix-run/node'
-import { json, redirect } from '@remix-run/node'
 import { Form, Link, useActionData, useSearchParams } from '@remix-run/react'
-import * as React from 'react'
-
 import { createUserSession, getUserId } from '~/session.server'
-import { verifyLogin } from '~/models/user.server'
+import { json, redirect } from '@remix-run/node'
 import { safeRedirect, validateEmail } from '~/utils'
+
+import { verifyLogin } from '~/models/user.server'
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const userId = await getUserId(request)
@@ -106,7 +107,6 @@ export default function LoginPage() {
 								ref={emailRef}
 								id='email'
 								required
-								autoFocus={true}
 								name='email'
 								type='email'
 								autoComplete='email'
@@ -171,7 +171,7 @@ export default function LoginPage() {
 							</label>
 						</div>
 						<div className='text-center text-sm text-gray-500'>
-							Don't have an account?{' '}
+							Don&apos;t have an account?{' '}
 							<Link
 								className='text-blue-500 underline'
 								to={{

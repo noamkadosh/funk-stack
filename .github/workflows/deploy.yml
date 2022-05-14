@@ -25,10 +25,35 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2.1.0
         with:
-          version: 7.0.1
+          version: 7
+          run_install: true
 
       - name: 🔬 Lint
         run: pnpm run lint
+
+  stylelint:
+    name: 🌈 Stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 📥 Download deps
+        uses: pnpm/action-setup@v2.1.0
+        with:
+          version: 7
+          run_install: true
+
+      - name: 🔍 Stylelint
+        run: pnpm run lint:styles
 
   typecheck:
     name: ʦ TypeScript
@@ -48,10 +73,11 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2.1.0
         with:
-          version: 7.0.1
+          version: 7
+          run_install: true
 
       - name: 🔎 Type check
-        run: pnpm run typecheck --if-present
+        run: pnpm run typecheck
 
   vitest:
     name: ⚡ Vitest
@@ -71,7 +97,8 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2.1.0
         with:
-          version: 7.0.1
+          version: 7
+          run_install: true
 
       - name: ⚡ Run vitest
         run: pnpm run test -- --coverage
@@ -87,7 +114,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🏄 Copy test env vars
-        run: cp .env.example .env
+        run: cp .env .env
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
@@ -97,7 +124,8 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2.1.0
         with:
-          version: 7.0.1
+          version: 7
+          run_install: true
 
       - name: 🐳 Docker compose
         # the sleep is just there to give time for postgres to get started
