@@ -19,6 +19,7 @@ specifiers:
   '@testing-library/user-event': ^14.0.4
   '@types/bcryptjs': ^2.4.2
   '@types/compression': ^1.7.2
+  '@types/cookie': ^0.5.1
   '@types/eslint': ^8.4.1
   '@types/express': ^4.17.13
   '@types/morgan': ^1.9.3
@@ -119,6 +120,7 @@ devDependencies:
   '@testing-library/user-event': 14.1.1_tlwynutqiyp5mns3woioasuxnq
   '@types/bcryptjs': 2.4.2
   '@types/compression': 1.7.2
+  '@types/cookie': 0.5.1
   '@types/eslint': 8.4.2
   '@types/express': 4.17.13
   '@types/morgan': 1.9.3
@@ -2195,6 +2197,10 @@ packages:
 
   /@types/cookie/0.4.1:
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
+
+  /@types/cookie/0.5.1:
+    resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
+    dev: true
 
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
