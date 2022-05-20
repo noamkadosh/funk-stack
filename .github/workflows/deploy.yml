@@ -134,7 +134,7 @@ jobs:
           DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/postgres'
 
       - name: 🛠 Setup Database
-        run: pnpm exec prisma migrate reset --force
+        run: pnpm prisma migrate reset --force
 
       - name: ⚙️ Build
         run: pnpm run build

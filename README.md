@@ -5,7 +5,7 @@
 Learn more about [Remix Stacks](https://remix.run/stacks).
 
 ```zsh
-pnpm exec create-remix --template noamkadosh/funk-stack
+pnpm create-remix --template noamkadosh/funk-stack
 ```
 
 ## What's in the stack
@@ -24,7 +24,7 @@ pnpm exec create-remix --template noamkadosh/funk-stack
 - Linting with [ESLint](https://eslint.org)
 - Static Types with [TypeScript](https://typescriptlang.org)
 
-Not a fan of bits of the stack? Fork it, change it, and use `pnpm exec create-remix --template your/repo`! Make it your own.
+Not a fan of bits of the stack? Fork it, change it, and use `pnpm create-remix --template your/repo`! Make it your own.
 
 ## Development
 

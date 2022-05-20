@@ -47,7 +47,7 @@ RUN pnpm fetch
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 
 ADD prisma .
-RUN pnpm exec prisma generate
+RUN pnpm prisma generate
 
 RUN pnpm fetch
 
