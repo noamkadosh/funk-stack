@@ -11,7 +11,6 @@ module.exports = {
 		'plugin:security/recommended',
 		'plugin:array-func/recommended',
 		'plugin:eslint-comments/recommended',
-		'plugin:promise/recommended',
 		'plugin:switch-case/recommended',
 		'plugin:jsx-a11y/recommended',
 		'plugin:react/recommended',
@@ -67,5 +66,6 @@ module.exports = {
 		react: {
 			version: 'detect'
 		}
-	}
+	},
+	ignorePatterns: ['**/*.json']
 }

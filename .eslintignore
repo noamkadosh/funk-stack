@@ -1,0 +1,7 @@
+cypress
+build
+public
+node_modules
+postgres-data
+styles
+styles-compiled

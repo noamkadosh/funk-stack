@@ -139,7 +139,7 @@
 	"lint-staged": {
 		"*.ts": [
 			"pnpm run lint",
-			"pnpm run test --findRelatedTests"
+			"pnpm run test related"
 		],
 		"*.sass": [
 			"pnpm run lint:styles"
