@@ -5,7 +5,7 @@
 	"license": "",
 	"sideEffects": false,
 	"scripts": {
-		"build": "concurrently 'pnpm run build:*' --group",
+		"build": "pnpm run build:styles && concurrently 'pnpm run build:*' --group",
 		"build:remix": "remix build",
 		"build:server": "esbuild --platform=node --format=cjs ./server.ts --outdir=build",
 		"build:styles": "pnpm run compile:sass && pnpm run generate:css",

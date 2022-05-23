@@ -13,7 +13,7 @@ export default function Index() {
 							<img
 								className='h-full w-full object-cover object-top'
 								src={funkStackCoverSrc}
-								alt='James Brown performing in the Musikhalle of Hamburg, in February 1973.'
+								alt='James Brown performing in the Musikhalle of Hamburg, in February 1973. Taken by Heinrich Klaffs.'
 							/>
 							<div className='absolute inset-0 bg-[color:rgba(245,158,11,0.4)] mix-blend-multiply' />
 						</div>
