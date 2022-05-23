@@ -1,15 +1,14 @@
+import * as React from 'react'
+
 import type {
 	ActionFunction,
 	LoaderFunction,
 	MetaFunction
 } from '@remix-run/node'
-import { json, redirect } from '@remix-run/node'
 import { Form, Link, useActionData, useSearchParams } from '@remix-run/react'
-import * as React from 'react'
-
-import { getUserId, createUserSession } from '~/session.server'
-
 import { createUser, getUserByEmail } from '~/models/user.server'
+import { createUserSession, getUserId } from '~/session.server'
+import { json, redirect } from '@remix-run/node'
 import { safeRedirect, validateEmail } from '~/utils'
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -107,7 +106,6 @@ export default function Join() {
 								ref={emailRef}
 								id='email'
 								required
-								autoFocus={true}
 								name='email'
 								type='email'
 								autoComplete='email'

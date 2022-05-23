@@ -68,6 +68,7 @@
 		"@testing-library/user-event": "^14.0.4",
 		"@types/bcryptjs": "^2.4.2",
 		"@types/compression": "^1.7.2",
+		"@types/cookie": "^0.5.1",
 		"@types/eslint": "^8.4.1",
 		"@types/express": "^4.17.13",
 		"@types/morgan": "^1.9.3",
@@ -138,7 +139,7 @@
 	"lint-staged": {
 		"*.ts": [
 			"pnpm run lint",
-			"pnpm run test --findRelatedTests"
+			"pnpm run test related"
 		],
 		"*.sass": [
 			"pnpm run lint:styles"

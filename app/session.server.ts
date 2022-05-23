@@ -1,7 +1,7 @@
 import { createCookieSessionStorage, redirect } from '@remix-run/node'
-import invariant from 'tiny-invariant'
 
 import { getUserById } from '~/models/user.server'
+import invariant from 'tiny-invariant'
 
 invariant(process.env.SESSION_SECRET, 'SESSION_SECRET must be set')
 
@@ -26,13 +26,12 @@ export async function getSession(request: Request) {
 
 export async function getUserId(request: Request): Promise<string | undefined> {
 	const session = await getSession(request)
-	const userId = session.get(USER_SESSION_KEY)
-	return userId
+	return session.get(USER_SESSION_KEY)
 }
 
 export async function getUser(request: Request) {
 	const userId = await getUserId(request)
-	if (userId === undefined) return null
+	if (userId === undefined) return
 
 	const user = await getUserById(userId)
 	if (user) return user

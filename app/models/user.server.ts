@@ -1,6 +1,6 @@
 import type { Password, User } from '@prisma/client'
-import bcrypt from 'bcryptjs'
 
+import bcrypt from 'bcryptjs'
 import { prisma } from '~/db.server'
 
 export type { User } from '@prisma/client'
@@ -44,15 +44,16 @@ export async function verifyLogin(
 	})
 
 	if (!userWithPassword || !userWithPassword.password) {
-		return null
+		return
 	}
 
 	const isValid = await bcrypt.compare(password, userWithPassword.password.hash)
 
 	if (!isValid) {
-		return null
+		return
 	}
 
+	// eslint-disable-next-line no-unused-vars
 	const { password: _password, ...userWithoutPassword } = userWithPassword
 
 	return userWithoutPassword

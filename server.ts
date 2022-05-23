@@ -1,8 +1,8 @@
-import path from 'path'
-import express from 'express'
 import compression from 'compression'
-import morgan from 'morgan'
 import { createRequestHandler } from '@remix-run/express'
+import express from 'express'
+import morgan from 'morgan'
+import path from 'node:path'
 
 const app = express()
 
@@ -67,18 +67,22 @@ app.use(morgan('tiny'))
 
 const MODE = process.env.NODE_ENV
 const BUILD_DIR = path.join(process.cwd(), 'build')
+// eslint-disable-next-line security/detect-non-literal-require
+const build = require(BUILD_DIR)
 
 app.all(
 	'*',
 	MODE === 'production'
-		? createRequestHandler({ build: require(BUILD_DIR) })
-		: (...args) => {
+		? createRequestHandler({ build })
+		: /* eslint-disable indent */
+		  (...args) => {
 				purgeRequireCache()
 				const requestHandler = createRequestHandler({
-					build: require(BUILD_DIR),
+					build,
 					mode: MODE
 				})
 				return requestHandler(...args)
+				/* eslint-enable indent */
 		  }
 )
 
@@ -86,6 +90,7 @@ const port = process.env.PORT || 3000
 
 app.listen(port, () => {
 	// require the built app so we're ready when the first request comes in
+	// eslint-disable-next-line security/detect-non-literal-require
 	require(BUILD_DIR)
 	console.log(`✅ app ready: http://localhost:${port}`)
 })
@@ -99,7 +104,7 @@ function purgeRequireCache() {
 	for (const key in require.cache) {
 		if (key.startsWith(BUILD_DIR)) {
 			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-			delete require.cache[key]
+			delete require.cache.key
 		}
 	}
 }
