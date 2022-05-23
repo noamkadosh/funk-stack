@@ -1,6 +1,6 @@
 # Remix Funk Stack
 
-![The Remix Funk Stack](https://repository-images.githubusercontent.com/461012689/37d5bd8b-fa9c-4ab0-893c-f0a199d5012d)
+![The Remix Funk Stack](https://repository-images.githubusercontent.com/488872909/5f5185e1-f1e3-4423-bbad-8b3f40b01c0f)
 
 Learn more about [Remix Stacks](https://remix.run/stacks).
 
